@@ -1,0 +1,14 @@
+.hero {
+  padding-top: 216px;
+}
+
+.news-section {
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 960px) {
+  .news-section {
+    flex-direction: column;
+  }
+}
