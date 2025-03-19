@@ -1,5 +1,6 @@
 .hero {
-  padding-top: 216px;
+  padding-top: 240px !important;
+  padding-bottom: 56px;
 }
 
 .news-section {
