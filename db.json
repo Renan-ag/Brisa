@@ -1,0 +1,181 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "id_user": 1,
+      "date": "2025-03-18T10:00:00Z",
+      "imageUrl": "https://source.unsplash.com/random/1920x1100?tech",
+      "category": "Technology",
+      "title": "The Future of AI in Web Development",
+      "resume": "Exploring how AI is transforming web development.",
+      "content": "Artificial intelligence is rapidly changing the way websites are built...",
+      "duration": "5 min",
+      "views": 1200,
+      "status": true
+    },
+    {
+      "id": 2,
+      "id_user": 1,
+      "date": "2025-03-17T14:30:00Z",
+      "imageUrl": "https://source.unsplash.com/random/1920x1100?design",
+      "category": "Design",
+      "title": "Top UI/UX Trends for 2025",
+      "resume": "A deep dive into the latest UI/UX design trends.",
+      "content": "As technology evolves, so do user expectations...",
+      "duration": "6 min",
+      "views": 980,
+      "status": true
+    },
+    {
+      "id": 3,
+      "id_user": 2,
+      "date": "2025-03-16T08:45:00Z",
+      "imageUrl": "https://source.unsplash.com/random/1920x1100?business",
+      "category": "Business",
+      "title": "How to Start an Online Business in 2025",
+      "resume": "A step-by-step guide for aspiring entrepreneurs.",
+      "content": "Starting an online business has never been easier...",
+      "duration": "7 min",
+      "views": 1450,
+      "status": true
+    },
+    {
+      "id": 4,
+      "id_user": 3,
+      "date": "2025-03-15T11:20:00Z",
+      "imageUrl": "https://source.unsplash.com/random/1920x1100?gaming",
+      "category": "Gaming",
+      "title": "Top 10 Games Releasing This Year",
+      "resume": "A look at the most anticipated games of 2025.",
+      "content": "Gamers have a lot to look forward to this year...",
+      "duration": "8 min",
+      "views": 1870,
+      "status": true
+    },
+    {
+      "id": 5,
+      "id_user": 4,
+      "date": "2025-03-14T16:10:00Z",
+      "imageUrl": "https://source.unsplash.com/random/1920x1100?health",
+      "category": "Health",
+      "title": "The Importance of Mental Health in the Workplace",
+      "resume": "Why mental well-being should be a priority at work.",
+      "content": "Employees perform better when they are mentally well...",
+      "duration": "5 min",
+      "views": 1100,
+      "status": true
+    },
+    {
+      "id": 6,
+      "id_user": 2,
+      "date": "2025-03-13T13:40:00Z",
+      "imageUrl": "https://source.unsplash.com/random/1920x1100?travel",
+      "category": "Travel",
+      "title": "Best Travel Destinations for 2025",
+      "resume": "Explore the most breathtaking destinations.",
+      "content": "From hidden gems to popular tourist spots...",
+      "duration": "6 min",
+      "views": 900,
+      "status": true
+    },
+    {
+      "id": 7,
+      "id_user": 1,
+      "date": "2025-03-12T18:15:00Z",
+      "imageUrl": "https://source.unsplash.com/random/1920x1100?fitness",
+      "category": "Fitness",
+      "title": "10-Minute Workout Routines for Busy People",
+      "resume": "Quick and effective workouts for a healthier life.",
+      "content": "If you struggle to find time for exercise...",
+      "duration": "4 min",
+      "views": 1250,
+      "status": true
+    },
+    {
+      "id": 8,
+      "id_user": 3,
+      "date": "2025-03-11T09:00:00Z",
+      "imageUrl": "https://source.unsplash.com/random/1920x1100?food",
+      "category": "Food",
+      "title": "Top 5 Healthy Recipes for a Balanced Diet",
+      "resume": "Easy and delicious meals to improve your health.",
+      "content": "Eating healthy doesn’t have to be boring...",
+      "duration": "6 min",
+      "views": 890,
+      "status": true
+    },
+    {
+      "id": 9,
+      "id_user": 5,
+      "date": "2025-03-10T15:30:00Z",
+      "imageUrl": "https://source.unsplash.com/random/1920x1100?movies",
+      "category": "Movies",
+      "title": "Best Movies to Watch in 2025",
+      "resume": "A must-watch list for movie lovers.",
+      "content": "From action-packed blockbusters to heartfelt dramas...",
+      "duration": "7 min",
+      "views": 1340,
+      "status": true
+    },
+    {
+      "id": 10,
+      "id_user": 4,
+      "date": "2025-03-09T12:00:00Z",
+      "imageUrl": "https://source.unsplash.com/random/1920x1100?books",
+      "category": "Books",
+      "title": "Top 10 Books You Should Read This Year",
+      "resume": "A mix of fiction and non-fiction for every reader.",
+      "content": "Books have the power to change our perspectives...",
+      "duration": "8 min",
+      "views": 760,
+      "status": true
+    }
+  ],
+  "user": [
+    {
+      "id": 1,
+      "user": "johndoe",
+      "name": "John",
+      "surname": "Doe",
+      "token": "a1b2c3d4e5",
+      "description": "Tech enthusiast and writer",
+      "imageProfile": "https://example.com/profiles/johndoe.jpg"
+    },
+    {
+      "id": 2,
+      "user": "janesmith",
+      "name": "Jane",
+      "surname": "Smith",
+      "token": "f6g7h8i9j0",
+      "description": "Passionate about design and UX",
+      "imageProfile": "https://example.com/profiles/janesmith.jpg"
+    },
+    {
+      "id": 3,
+      "user": "mikebrown",
+      "name": "Mike",
+      "surname": "Brown",
+      "token": "k1l2m3n4o5",
+      "description": "Web developer and open-source contributor",
+      "imageProfile": "https://example.com/profiles/mikebrown.jpg"
+    },
+    {
+      "id": 4,
+      "user": "sarajohnson",
+      "name": "Sara",
+      "surname": "Johnson",
+      "token": "p6q7r8s9t0",
+      "description": "Lover of books and tech blogging",
+      "imageProfile": "https://example.com/profiles/sarajohnson.jpg"
+    },
+    {
+      "id": 5,
+      "user": "davidlee",
+      "name": "David",
+      "surname": "Lee",
+      "token": "u1v2w3x4y5",
+      "description": "Cybersecurity expert and writer",
+      "imageProfile": "https://example.com/profiles/davidlee.jpg"
+    }
+  ]
+}
