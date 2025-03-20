@@ -74,9 +74,9 @@ const Home = () => {
         </div>
 
         <div className="row mt-24">
-          <Card />
-          <Card />
-          <Card />
+          {mostViewed.map((item) => (
+            <Card key={item.id} content={item} />
+          ))}
         </div>
       </section>
 
