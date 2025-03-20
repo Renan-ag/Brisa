@@ -1,14 +1,39 @@
+// Components
 import Footer from "components/Footer";
 import Header from "components/Header";
-
-// Components
 import Card from './Card';
 import Hero from './Hero';
 import Main from "./Main";
-
+// API
+import api from 'services/api';
+// Hooks
+import { useState, useEffect } from "react";
+// Styles
 import './home.css';
+import IPost from "types/post.type";
 
 const Home = () => {
+  const [main, setMain] = useState<Array<IPost>>([]);
+  const [mostViewed, setMostViewed] = useState<Array<IPost>>([]);
+
+  useEffect(() => {
+    // Get Top 3 most viewed posts
+    api.get('posts?_limit=3&_sort=-views')
+      .then((res) => {
+        const data = res.data as Array<IPost>;
+        setMostViewed(data);
+      })
+      .catch((err) => { console.log(err) });
+
+    // Get Top 3 most recent posts
+    api.get('posts?_limit=3&_sort=-date')
+      .then((res) => {
+        const data = res.data as Array<IPost>;
+        setMain(data);
+      })
+      .catch((err) => { console.log(err) });
+  }, [])
+
   return (
     <>
       <Header />
@@ -30,26 +55,31 @@ const Home = () => {
             </h2>
           </div>
           <div>
-            <Main />
-            <Main />
-            <Main />
+            {
+              main.map((item) => (
+                <Main key={item.id} content={item} />
+              ))
+            }
           </div>
         </div>
       </section>
 
       <section className="container flex-column position-relative">
         <div className="w-100">
-          <h2 className="fw-normal">Posts mais acessados!</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem facilis et atque soluta deserunt assumenda hic
-            fuga.</p>
+          <h3 className="fw-normal">Posts mais acessados!</h3>
+          <p className="mt-8">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem facilis et atque soluta deserunt assumenda hic
+            fuga.
+          </p>
         </div>
 
-        <div className="row mt-16">
+        <div className="row mt-24">
           <Card />
           <Card />
           <Card />
         </div>
       </section>
+
       <Footer />
     </>
   )
