@@ -8,9 +8,9 @@ import './footer.css'
 const Footer = () => {
   return (
     <>
-      <footer className="px-24 bt-black">
+      <footer className="px-48 bt-black">
         <div className="row">
-          <div className="col-8 flex-column-sm flex-center">
+          <div className="col-8 ml-0 flex-column-sm flex-vertical-center">
             <span className="brand brand-font">
               <img src={Wind} alt="Vento icone" />
               Brisa
@@ -19,7 +19,7 @@ const Footer = () => {
               © Copyright 2025 Brisa Inc. - Creative and informative Blog
             </p>
           </div>
-          <div className="col-4 flex-end flex-center-sm">
+          <div className="col-4 mr-0 flex-end flex-center-sm">
             <ul className="pt-8">
               <li>
                 <a className="color-gray" href="#">
