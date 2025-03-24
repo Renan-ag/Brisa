@@ -1,6 +1,4 @@
 // Components
-import Footer from "components/Footer";
-import Header from "components/Header";
 import Card from './Card';
 import Hero from './Hero';
 import Main from "./Main";
@@ -36,7 +34,6 @@ const Home = () => {
 
   return (
     <>
-      <Header />
       <Hero />
 
       <section className="container">
@@ -74,13 +71,9 @@ const Home = () => {
         </div>
 
         <div className="row mt-24">
-          {mostViewed.map((item) => (
-            <Card key={item.id} content={item} />
-          ))}
+          {mostViewed.map((item) => (<Card key={item.id} content={item} />))}
         </div>
       </section>
-
-      <Footer />
     </>
   )
 }
