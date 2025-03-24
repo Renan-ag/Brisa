@@ -10,8 +10,7 @@ const Header = () => {
             <img src={wind} alt="Vento icone" />
             Brisa
           </span>
-          <ul>
-            <li><a href="#">Categorias</a></li>
+          <ul>            
             <li><a href="#">Sobre</a></li>
             <li><a href="#">Contato</a></li>
           </ul>
@@ -38,8 +37,7 @@ const Header = () => {
 
 
         <div data-target="menuMobile" className="menu-mobile">
-          <ul className="nav-mobile">
-            <li><a className="link-menu-mobile" href="">Categorias</a></li>
+          <ul className="nav-mobile">            
             <li><a className="link-menu-mobile" href="">Sobre</a></li>
             <li><a className="link-menu-mobile" href="">Contato</a></li>
             <li className="p-16">
