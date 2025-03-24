@@ -1,3 +1,5 @@
+// Components
+import { Link } from 'react-router-dom';
 // Hooks
 import { useEffect, useState } from 'react';
 // API
@@ -27,7 +29,9 @@ const Main = ({ content }: { content: IPost }) => {
         <h6 className="color-gray uppercase">{formatDateToPost(content.date)}</h6>
         <h6 className="color-gray uppercase">{content.category}</h6>
 
-        <h3 className="fw-normal mt-8">{content.title}</h3>
+        <Link to={`/post/${content.id}`}>
+          <h3 className="fw-normal mt-8">{content.title}</h3>
+        </Link>
         <p className="mt-8">
           {content.resume}
         </p>

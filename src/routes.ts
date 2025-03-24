@@ -40,7 +40,7 @@ const routes = [
     exact: true
   },
   {
-    path: '/post',
+    path: '/post/:idPost',
     component: Post,
     exact: true
   },

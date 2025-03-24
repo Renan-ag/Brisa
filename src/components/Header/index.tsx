@@ -1,18 +1,19 @@
 import wind from 'svg/wind.svg'
 import './header.css';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
     <>
       <header className="px-48 py-24">
         <nav>
-          <span className="brand brand-font">
+          <Link to="/" className="brand brand-font">
             <img src={wind} alt="Vento icone" />
             Brisa
-          </span>
-          <ul>            
-            <li><a href="#">Sobre</a></li>
-            <li><a href="#">Contato</a></li>
+          </Link>
+          <ul>
+            <li><Link to="/sobre">Sobre</Link></li>
+            <li><Link to="/contato">Contato</Link></li>
           </ul>
         </nav>
 
@@ -27,19 +28,18 @@ const Header = () => {
           </div>
 
           <div className="cta-desktop ml-24">
-            <a href="#" className="btn">Login</a>
+            <Link to="/login" className="btn">Login</Link>
           </div>
 
           <div className="cta-mobile">
-            <a href="#" className="link color-yellow">Login</a>
+            <Link to="/login" className="link color-yellow">Login</Link>
           </div>
         </div>
 
-
         <div data-target="menuMobile" className="menu-mobile">
-          <ul className="nav-mobile">            
-            <li><a className="link-menu-mobile" href="">Sobre</a></li>
-            <li><a className="link-menu-mobile" href="">Contato</a></li>
+          <ul className="nav-mobile">
+            <li><Link className="link-menu-mobile" to="/sobre">Sobre</Link></li>
+            <li><Link className="link-menu-mobile" to="/contato">Contato</Link></li>
             <li className="p-16">
               <form className="flex-center">
                 <input type="text" name="search" placeholder="Buscar..." />
@@ -48,7 +48,6 @@ const Header = () => {
             </li>
           </ul>
         </div>
-
       </header>
     </>
   );
