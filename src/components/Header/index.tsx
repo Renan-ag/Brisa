@@ -35,9 +35,8 @@ const Header = () => {
             <a href="#" className="link color-yellow">Login</a>
           </div>
         </div>
-      </header>
 
-      <div className="relative">
+
         <div data-target="menuMobile" className="menu-mobile">
           <ul className="nav-mobile">
             <li><a className="link-menu-mobile" href="">Categorias</a></li>
@@ -51,7 +50,8 @@ const Header = () => {
             </li>
           </ul>
         </div>
-      </div>
+
+      </header>
     </>
   );
 }

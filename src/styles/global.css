@@ -356,10 +356,10 @@
   align-items: center;
 }
 
-.flex-vertical-center{
-  display: flex;  
+.flex-vertical-center {
+  display: flex;
   align-items: center;
- }
+}
 
 .flex-column {
   flex-direction: column;
@@ -1385,6 +1385,12 @@ html {
 }
 
 body {
+  #root {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
   width: 100%;
   position: relative;
   background-color: #1E1E1E;
@@ -1421,7 +1427,6 @@ a:hover {
   opacity: 0.7;
 }
 
-
 input {
   accent-color: #5390E3;
 }
@@ -1449,4 +1454,12 @@ option {
 
 .border-test {
   border: 1px solid red;
+}
+
+.small-content-container {
+  padding-block: 248px 256px;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
 }

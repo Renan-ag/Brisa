@@ -10,7 +10,7 @@ const Footer = () => {
     <>
       <footer className="px-48 bt-black">
         <div className="row">
-          <div className="col-8 ml-0 flex-column-sm flex-vertical-center">
+          <div className="col-8 mx-0 flex-column-sm flex-vertical-center">
             <span className="brand brand-font">
               <img src={Wind} alt="Vento icone" />
               Brisa
