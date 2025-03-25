@@ -1,8 +1,27 @@
+// Svg
 import wind from 'svg/wind.svg'
+// Styles
 import './header.css';
-import { Link } from 'react-router-dom';
+// Components / Hooks  / Types
+import { Link, useNavigate } from 'react-router-dom';
+import { ChangeEvent, FormEvent, useState } from 'react';
 
 const Header = () => {
+  const initialValueForm = { search: '' };
+  const navigate = useNavigate();
+
+  const [form, setForm] = useState(initialValueForm);
+
+  function onChange(e: ChangeEvent<HTMLInputElement>) {
+    const { value, name } = e.target;    
+    setForm({ ...form, [name]: value });
+  }
+
+  function handleSearch(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();    
+    navigate(`/pesquisa/${form.search}`);
+  }
+
   return (
     <>
       <header className="px-48 py-24">
@@ -21,8 +40,8 @@ const Header = () => {
 
         <div className="flex-start">
           <div className="search">
-            <form className="flex-center">
-              <input type="text" name="search" placeholder="Buscar..." />
+            <form onSubmit={handleSearch} className="flex-center">
+              <input type="text" name="search" onChange={onChange} placeholder="Buscar..." />
               <button title='Pesquisar' className="btn-search"></button>
             </form>
           </div>
@@ -41,8 +60,8 @@ const Header = () => {
             <li><Link className="link-menu-mobile" to="/sobre">Sobre</Link></li>
             <li><Link className="link-menu-mobile" to="/contato">Contato</Link></li>
             <li className="p-16">
-              <form className="flex-center">
-                <input type="text" name="search" placeholder="Buscar..." />
+              <form onSubmit={handleSearch} className="flex-center">
+                <input type="text" name="search" onChange={onChange} placeholder="Buscar..." />
                 <button title='Pesquisar' className="btn-search"></button>
               </form>
             </li>
