@@ -1,6 +1,3 @@
-// Images 
-import Profile from 'img/profile.jpg';
-import PostImg from 'img/post-1.png';
 // Styles
 import './Post.css'
 // Hooks
@@ -30,13 +27,13 @@ const Post = () => {
         })
         .catch((err) => console.log(err));
     }
-  }, [])
+  }, []);
 
   return (
     <>
       <section className="container">
         <div>
-          <h5 className="color-yellow fw-normal uppercase text-center">{postData?.category}</h5>
+          <h5 className="color-gray fw-normal uppercase text-center">{postData?.category}</h5>
           <h2 className="fw-normal mt-8 text-center">{postData?.title}</h2>
           <div className="flex-center mt-24">
             <div className="flex-start">
@@ -49,7 +46,7 @@ const Post = () => {
               </div>
             </div>
             <div className="ml-32">
-              <h6 className="color-gray"> {formatDateToPost(postData?.date ?? new Date())} - leitura de {postData?.duration} minutos</h6>
+              <h6 className="color-gray"> {formatDateToPost(postData?.date ?? new Date())} - leitura de {postData?.duration}.</h6>
             </div>
           </div>
         </div>
