@@ -1355,6 +1355,14 @@ strong {
   white-space: nowrap;
 }
 
+.position-absolute {
+  position: absolute;
+}
+
+.position-relative {
+  position: relative;
+}
+
 .uppercase {
   text-transform: uppercase;
   letter-spacing: 2px;
