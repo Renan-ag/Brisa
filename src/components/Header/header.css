@@ -176,7 +176,7 @@ header ul li a:hover {
   cursor: pointer;
   height: 44px;
   width: 54px;
-  background-image: url("../svg/search.svg");
+  background-image: url("../../svg/search.svg");
   background-repeat: no-repeat;
   background-position: center center;
   background-color: #2B2B2B;
