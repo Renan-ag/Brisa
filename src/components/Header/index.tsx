@@ -11,16 +11,19 @@ const Header = () => {
   const navigate = useNavigate();
 
   const [form, setForm] = useState(initialValueForm);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
 
   function onChange(e: ChangeEvent<HTMLInputElement>) {
-    const { value, name } = e.target;    
+    const { value, name } = e.target;
     setForm({ ...form, [name]: value });
   }
 
   function handleSearch(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();    
+    e.preventDefault();
     navigate(`/pesquisa/${form.search}`);
   }
+
+  const toggleMobileMenu = () => setShowMobileMenu(!showMobileMenu);
 
   return (
     <>
@@ -36,7 +39,7 @@ const Header = () => {
           </ul>
         </nav>
 
-        <div data-target="toggleMenuButton" className="bx"></div>
+        <div onClick={toggleMobileMenu} className={`bx ${showMobileMenu && 'active'}`}></div>
 
         <div className="flex-start">
           <div className="search">
@@ -51,23 +54,22 @@ const Header = () => {
           </div>
 
           <div className="cta-mobile">
-            <Link to="/login" className="link color-yellow">Login</Link>
+            <Link to="/login" className="link bold">Login</Link>
           </div>
         </div>
-
-        <div data-target="menuMobile" className="menu-mobile">
-          <ul className="nav-mobile">
-            <li><Link className="link-menu-mobile" to="/sobre">Sobre</Link></li>
-            <li><Link className="link-menu-mobile" to="/contato">Contato</Link></li>
-            <li className="p-16">
-              <form onSubmit={handleSearch} className="flex-center">
-                <input type="text" name="search" onChange={onChange} placeholder="Buscar..." />
-                <button title='Pesquisar' className="btn-search"></button>
-              </form>
-            </li>
-          </ul>
-        </div>
       </header>
+      <div className={`menu-mobile ${showMobileMenu && 'show-menu'}`}>
+        <ul className="nav-mobile">
+          <li><Link className="link-menu-mobile" to="/sobre">Sobre</Link></li>
+          <li><Link className="link-menu-mobile" to="/contato">Contato</Link></li>
+          <li className="p-16">
+            <form onSubmit={handleSearch} className="flex-center">
+              <input type="text" name="search" onChange={onChange} placeholder="Buscar..." />
+              <button title='Pesquisar' className="btn-search"></button>
+            </form>
+          </li>
+        </ul>
+      </div>
     </>
   );
 }

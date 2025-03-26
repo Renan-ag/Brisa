@@ -4,7 +4,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgba(30, 30, 30, 0.3098039216);
+  background-color: rgba(30, 30, 30, 0.3);
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
   position: fixed;
@@ -136,15 +136,15 @@ nav .brand img {
 .menu-mobile {
   width: 100%;
   height: 100vh;
-  margin-top: 80px;
+  margin-top: 88px;
   position: fixed;
   top: 0;
   left: -100%;
-  background-color: rgba(30, 30, 30, 0.5607843137);
-  z-index: 990;
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-  transition: 0.7s ease;
+  background-color: rgba(30, 30, 30, 0.5);
+  z-index: 999;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  transition: 0.6s ease;
 }
 
 .menu-mobile li {
