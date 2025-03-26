@@ -2,6 +2,7 @@
 import Card from './Card';
 import Hero from './Hero';
 import Main from "./Main";
+import LoadingScreen from 'components/LoadingScreen';
 // API
 import api from 'services/api';
 // Hooks
@@ -10,6 +11,7 @@ import { useState, useEffect } from "react";
 import './home.css';
 import IPost from "types/post.type";
 import { useNavigate } from 'react-router-dom';
+
 
 const Home = () => {
   const navigate = useNavigate();
@@ -42,6 +44,7 @@ const Home = () => {
 
   return (
     <>
+      <LoadingScreen />
       <Hero />
 
       <section className="container">
