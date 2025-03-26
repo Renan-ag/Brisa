@@ -2,12 +2,13 @@
 import Card from 'pages/Home/Card';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 // Hooks
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import api from 'services/api';
 import IPost from 'types/post.type';
 
 
 const Search = () => {
+  const navigate = useNavigate();
   const { wordSearch } = useParams();
   const initialValueForm = { search: '' };
 
@@ -15,15 +16,17 @@ const Search = () => {
   const [word, setWord] = useState(wordSearch);
   const [posts, setPosts] = useState<Array<IPost>>([]);
 
-  useEffect(() => {    
+  useEffect(() => {
     if (!word) return;
 
     api.get(`/posts?q=${word}`)
-      .then((res) => {        
+      .then((res) => {
         setPosts(res.data);
       })
-      .catch((err) => console.log(err));
-
+      .catch((err) => {
+        console.log(err);
+        navigate('/erro-servidor');
+      });
   }, [word]);
 
   function onChange(e: ChangeEvent<HTMLInputElement>) {

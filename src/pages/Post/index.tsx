@@ -12,6 +12,7 @@ import formatDateToPost from 'utils/formatDateToPost';
 
 const Post = () => {
   const { idPost } = useParams();
+  const [error, setError] = useState(false);
   const [postData, setPostData] = useState<IPost>();
   const [authorData, setAuthorData] = useState<IUser>();
 
@@ -23,19 +24,26 @@ const Post = () => {
 
           api.get("/users/" + res.data.id_user)
             .then((res) => { setAuthorData(res.data) })
-            .catch((err) => console.log(err))
+            .catch((err) => {
+              console.error(err);
+              setError(true);
+            })
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.error(err);
+          setError(true);
+        });
     }
   }, []);
 
   return (
     <>
       <section className="container">
+        {error && <h5 className='text-center pt-48 color-red'>Houve um erro ao carregar os dados da página, tente recarregar a página novamente! </h5>}
         <div>
           <h5 className="color-gray fw-normal uppercase text-center">{postData?.category}</h5>
           <h2 className="fw-normal mt-8 text-center">{postData?.title}</h2>
-          <div className="flex-center mt-24">
+          {authorData && <div className="flex-center mt-24">
             <div className="flex-start">
               <div className="profile">
                 <img src={authorData?.imageProfile} className="profile-img" alt="Imagem do autor" />
@@ -48,7 +56,7 @@ const Post = () => {
             <div className="ml-32">
               <h6 className="color-gray"> {formatDateToPost(postData?.date ?? new Date())} - leitura de {postData?.duration}.</h6>
             </div>
-          </div>
+          </div>}
         </div>
         <div className="w-100 post-image my-32">
           <img src={postData?.imageUrl} alt="Imagem da noticia" />
@@ -59,7 +67,7 @@ const Post = () => {
         </div>
         <div className="row mt-40">
           <div className="col-3 remove-in-sm"></div>
-          <div className="col-6 border-black px-16 py-32">
+          {authorData && <div className="col-6 border-black px-16 py-32">
             <div className="flex-start">
               <div>
                 <div className="profile-big">
@@ -73,7 +81,7 @@ const Post = () => {
                 <p className="mt-16"> {authorData?.description} </p>
               </div>
             </div>
-          </div>
+          </div>}
           <div className="col-3 remove-in-sm"></div>
         </div>
       </section>

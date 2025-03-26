@@ -9,8 +9,10 @@ import { useState, useEffect } from "react";
 // Styles
 import './home.css';
 import IPost from "types/post.type";
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+  const navigate = useNavigate();
   const [main, setMain] = useState<Array<IPost>>([]);
   const [mostViewed, setMostViewed] = useState<Array<IPost>>([]);
 
@@ -21,7 +23,10 @@ const Home = () => {
         const data = res.data as Array<IPost>;
         setMostViewed(data);
       })
-      .catch((err) => { console.log(err) });
+      .catch((err) => {
+        console.error(err);
+        navigate('/erro-servidor');
+      });
 
     // Get Top 3 most recent posts
     api.get('posts?_limit=3&_sort=-date')
@@ -29,7 +34,10 @@ const Home = () => {
         const data = res.data as Array<IPost>;
         setMain(data);
       })
-      .catch((err) => { console.log(err) });
+      .catch((err) => {
+        console.error(err);
+        navigate('/erro-servidor');
+      });
   }, [])
 
   return (

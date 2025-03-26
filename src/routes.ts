@@ -7,6 +7,7 @@ import Profile from 'pages/Profile';
 import Post from 'pages/Post';
 import Search from 'pages/Search';
 import Home from "pages/Home";
+import Error from 'pages/Error';
 
 const routes = [
   {
@@ -47,6 +48,11 @@ const routes = [
   {
     path: '/pesquisa/:wordSearch',
     component: Search,
+    exact: true
+  },
+  {
+    path: '/erro-servidor',
+    component: Error,
     exact: true
   }
 ];
