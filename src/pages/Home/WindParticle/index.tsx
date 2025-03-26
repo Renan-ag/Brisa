@@ -7,7 +7,7 @@ const WindParticle = () => {
 
   useEffect(() => {
     const generateParticle = () => {
-      const numParticles = 40;
+      const numParticles = 60;
       const newParticle = Array.from({ length: numParticles }).map((_, i) => ({
         id: i,
         bottom: Math.random() * 400,
@@ -29,13 +29,13 @@ const WindParticle = () => {
           key={particle.id}
           className="position-absolute"
           style={{
-            bottom: `${particle.bottom + 30}px`,
+            bottom: `${particle.bottom + 28}px`,
             left: `-10px`,
             width: `${particle.size}px`,
             height: `${particle.size}px`,
-            backgroundColor: "rgba(255,255,255, .5)",
+            backgroundColor: "rgba(255,255,255, .35)",
             borderRadius: "50%",
-            boxShadow: "0 0 10px #fff, 0 0 20px #eee",
+            boxShadow: "0 0 5px #fff, 0 0 10px #eee",
             filter: "blur(2px)",
             animation: `windParticle ${particle.duration}s linear ${particle.delay + (particle.id * .1)}s infinite`,
           }}
