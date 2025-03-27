@@ -46,7 +46,7 @@ const routes = [
     exact: true
   },
   {
-    path: '/pesquisa/:wordSearch',
+    path: '/pesquisa',
     component: Search,
     exact: true
   },

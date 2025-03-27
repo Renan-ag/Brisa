@@ -1,99 +1,127 @@
 // Svg
 import ChevronLeft from 'svg/chevron-left.svg';
 import ChevronRight from 'svg/chevron-right.svg';
+
 // Components | Hooks
 import Card from 'pages/Home/Card';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router';
+import { useNavigate, useSearchParams } from 'react-router';
 import api from 'services/api';
+
 // Types
-import IPostPaginated from 'types/postPaginated.type';
+import IPost from 'types/post.type';
+import { AxiosHeaders } from 'axios';
 
 const Search = () => {
+  const LIMIT = 9;
   const navigate = useNavigate();
-  const { wordSearch } = useParams();
-  const initialValueForm = { search: '' };
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const [form, setForm] = useState(initialValueForm);
-  const [word, setWord] = useState(wordSearch);
-  const [actualPage, setActualPage] = useState(1);
-  const [paginationData, setPaginationData] = useState<IPostPaginated>()
+  // Estado para controlar busca e paginação
+  const [form, setForm] = useState({ search: searchParams.get('search') || '' });
+  const [pagination, setPagination] = useState({
+    currentPage: 1,
+    totalPages: 0,
+    totalItems: 0,
+    data: [] as IPost[],
+  });
 
+  // Busca dados na API sempre que `search` ou `currentPage` mudar
   useEffect(() => {
-    if (!word) return;
+    const searchQuery = searchParams.get('search');
+    if (!searchQuery) return;
 
-    api.get(`/posts?_page=${actualPage}&_per_page=9&q=${word}`)
-      .then((res) => { setPaginationData(res.data); })
-      .catch((err) => {
-        console.error(err);
+    api.get(`/posts?_page=${pagination.currentPage}&_limit=${LIMIT}&q=${searchQuery}`)
+      .then((res) => {
+        const headers = res.headers;
+        const totalItems = headers instanceof AxiosHeaders ? Number(headers.get('X-Total-Count')) : 0;
+        setPagination((prev) => ({
+          ...prev,
+          totalItems,
+          totalPages: Math.ceil(totalItems / LIMIT),
+          data: res.data,
+        }));
+      })
+      .catch(() => {
         navigate('/erro-servidor');
       });
-  }, [word, actualPage]);
+  }, [searchParams, pagination.currentPage]);
 
+  // Atualiza campo de busca
   function onChange(e: ChangeEvent<HTMLInputElement>) {
-    const { value, name } = e.target;
-    setForm({ ...form, [name]: value });
+    setForm({ search: e.target.value });
   }
 
+  // Realiza nova busca ao submeter o formulário
   function handleSearch(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setWord(form.search);
+    setSearchParams({ search: form.search });
   }
 
-  function changePage(action: 'inc' | 'dec') {
-    if (paginationData && (action == 'inc' && actualPage < paginationData?.pages)) {
-      setActualPage(actualPage + 1);
-    } else if (paginationData && (action == 'dec' && actualPage > 1)) {
-      setActualPage(actualPage - 1);
-    }
+  // Troca de página
+  function changePage(direction: 'next' | 'prev') {
+    setPagination((prev) => ({
+      ...prev,
+      currentPage: direction === 'next' ? prev.currentPage + 1 : prev.currentPage - 1,
+    }));
   }
 
   return (
-    <>
-      <section className="container flex-grow-1 flex-column position-relative">
-        <h6 className='color-gray text-center'> {paginationData?.items} resultados</h6>
-        <h3 className="fw-normal text-center">"{word}"</h3>
+    <section className="container flex-grow-1 flex-column position-relative w-100">
+      <h6 className='color-gray text-center'>{pagination.totalItems} resultados</h6>
+      <h3 className="fw-normal text-center">"{searchParams.get('search')}"</h3>
 
-        <form onSubmit={handleSearch}>
-          <div className='row'>
-            <div className='col-2 remove-in-small'></div>
-            <div className='col-8 flex-center'>
-              <input type="text" name='search' placeholder='Buscar...' onChange={onChange} />
-              <button className='btn ml-16'> Buscar </button>
-            </div>
-            <div className='col-2 remove-in-small'></div>
+      {/* Formulário de busca */}
+      <form onSubmit={handleSearch}>
+        <div className='row'>
+          <div className='col-2 remove-in-small'></div>
+          <div className='col-8 flex-center'>
+            <input
+              type="text"
+              name="search"
+              placeholder="Buscar..."
+              value={form.search}
+              onChange={onChange}
+            />
+            <button className='btn ml-16'>Buscar</button>
           </div>
-        </form>
-        <div className="row mt-24">
-          {paginationData?.data.map((item) => (<Card key={item.id} content={item} />))}
+          <div className='col-2 remove-in-small'></div>
         </div>
+      </form>
 
-        <div className='flex-between mt-24 px-48'>
-          <button
-            className='btn-change-page btn-prev'
-            disabled={actualPage == 1}
-            onClick={() => changePage('dec')}
-          >
-            <img src={ChevronLeft} alt="Seta apontando para direita" />
-            Anterior
-          </button>
-          <div className='flex-center'>
-            <h5 className='bold'>
-              {paginationData?.next ? paginationData.next - 1 : paginationData?.pages} de {paginationData?.pages}
-            </h5>
-          </div>
-          <button
-            className='btn-change-page btn-next'
-            disabled={actualPage == paginationData?.pages}
-            onClick={() => changePage('inc')}
-          >
-            Próximo
-            <img src={ChevronRight} alt="Seta apontando para direita" />
-          </button>
-        </div>
-      </section>
-    </>
-  )
-}
+      {/* Lista de resultados */}
+      <div className="row mt-24">
+        {pagination.data.length === 0 ? (
+          <h5 className='text-center color-gray'>Nenhum registro encontrado</h5>
+        ) : (
+          pagination.data.map((item) => <Card key={item.id} content={item} />)
+        )}
+      </div>
+
+      {/* Controles de Paginação */}
+      <div className='flex-between mt-40 px-48'>
+        <button
+          className='btn-change-page btn-prev'
+          disabled={pagination.currentPage === 1}
+          onClick={() => changePage('prev')}
+        >
+          <img src={ChevronLeft} alt="Seta apontando para esquerda" />
+          Anterior
+        </button>
+
+        <h5 className='bold flex-center'>{pagination.currentPage} de {pagination.totalPages}</h5>
+
+        <button
+          className='btn-change-page btn-next'
+          disabled={pagination.currentPage >= pagination.totalPages}
+          onClick={() => changePage('next')}
+        >
+          Próximo
+          <img src={ChevronRight} alt="Seta apontando para direita" />
+        </button>
+      </div>
+    </section>
+  );
+};
 
 export default Search;
