@@ -13,7 +13,7 @@ import IPost from 'types/post.type';
 import { AxiosHeaders } from 'axios';
 
 const Search = () => {
-  const LIMIT = 9;
+  const LIMIT = 6;
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
 
