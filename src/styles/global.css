@@ -1383,12 +1383,29 @@ strong {
   border: 0;
   font-family: "Rubik", sans-serif;
   font-size: 16px;
+  letter-spacing: 1px;
   line-height: 150%;
   transition: 0.3s ease;
 }
 
+.btn-sm {
+  padding: 5px 12px;
+}
+
 .btn:hover {
   opacity: 0.7;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid #eeeeec;
+  color: #eeeeec;
+
+  &:hover {
+    background: #eeeeec;
+    color: #0F141F;
+    opacity: 1;
+  }
 }
 
 .btn-change-page {

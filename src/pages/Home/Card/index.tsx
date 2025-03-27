@@ -26,8 +26,8 @@ const Card = ({ content }: { content: IPost }) => {
             <div className='flex-grow-1'>
               <p className="mt-8">{content.resume}</p>
             </div>
-            <div className="flex-center w-100 pb-8">
-              <Link to={`/post/${content.id}`} className="link color-blue"> Ler mais </Link>
+            <div className="flex-center w-100 pt-16">
+              <Link to={`/post/${content.id}`} className="btn btn-outline btn-sm w-100 text-center"> Ler mais </Link>
             </div>
           </div>
         </div>
