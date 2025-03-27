@@ -73,7 +73,7 @@ const Home = () => {
       </section>
 
       <section className="container flex-column position-relative">
-        <div className="w-100">
+        <div className="w-100 px-16">
           <h3 className="fw-normal">Posts mais acessados!</h3>
           <p className="mt-8">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem facilis et atque soluta deserunt assumenda hic
@@ -81,7 +81,7 @@ const Home = () => {
           </p>
         </div>
 
-        <div className="row mt-24">
+        <div className="row mt-16">
           {mostViewed.map((item) => (<Card key={item.id} content={item} />))}
         </div>
       </section>
