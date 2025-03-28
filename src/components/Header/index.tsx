@@ -28,7 +28,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="px-48 py-24">
+      <header className="page-header px-48 py-24">
         <nav>
           <Link to="/" className="brand brand-font">
             <img src={wind} alt="Vento icone" />
