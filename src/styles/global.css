@@ -13,27 +13,27 @@
 }
 
 .color-white {
-  color: #FFF;
+  color: #FFF !important;
 }
 
 .color-gray {
-  color: #8d8e91;
+  color: #8d8e91 !important;
 }
 
 .color-red {
-  color: #F03D3D;
+  color: #F03D3D !important;
 }
 
 .color-green {
-  color: #0BB07B;
+  color: #0BB07B !important;
 }
 
 .color-yellow {
-  color: #FFCE52;
+  color: #FFCE52 !important;
 }
 
 .color-blue {
-  color: #73ACFA;
+  color: #73ACFA !important;
 }
 
 .bg-white-dark {
@@ -320,7 +320,7 @@
 }
 
 @media screen and (max-width: 525px) {
-  .container:not(:first){
+  .container:not(:first) {
     padding: 56px 16px;
   }
 }
@@ -1240,7 +1240,8 @@ h2 {
   }
 }
 
-h3 {
+h3,
+.h3 {
   color: #FFF;
   font-family: "Rubik", sans-serif;
   font-size: 40px;
@@ -1248,7 +1249,9 @@ h3 {
 }
 
 @media screen and (max-width: 960px) {
-  h3 {
+
+  h3,
+  .h3 {
     font-family: "Rubik", sans-serif;
     font-size: 24px;
     line-height: 120%;
@@ -1285,7 +1288,8 @@ h5 {
   }
 }
 
-h6 {
+h6,
+.h6 {
   color: #FFF;
   font-family: "Rubik", sans-serif;
   font-size: 14px;
@@ -1294,7 +1298,9 @@ h6 {
 }
 
 @media screen and (max-width: 960px) {
-  h6 {
+
+  h6,
+  .h6 {
     font-family: "Rubik", sans-serif;
     font-size: 14px;
     font-weight: 400;
