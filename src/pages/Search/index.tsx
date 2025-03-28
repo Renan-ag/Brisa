@@ -90,7 +90,7 @@ const Search = () => {
       </form>
 
       {/* Lista de resultados */}
-      <div className="row mt-24">
+      <div className="row">
         {pagination.data.length === 0 ? (
           <h5 className='text-center color-gray'>Nenhum registro encontrado</h5>
         ) : (
@@ -99,7 +99,7 @@ const Search = () => {
       </div>
 
       {/* Controles de Paginação */}
-      <div className='flex-between mt-40 px-48'>
+      <div className='flex-between mt-40 mx-auto text-container'>
         <button
           className='btn-change-page btn-prev'
           disabled={pagination.currentPage === 1}
@@ -109,7 +109,7 @@ const Search = () => {
           Anterior
         </button>
 
-        <h5 className='bold flex-center'>{pagination.currentPage} de {pagination.totalPages}</h5>
+        <h5 className='fw-normal flex-center'>{pagination.currentPage} de {pagination.totalPages}</h5>
 
         <button
           className='btn-change-page btn-next'

@@ -303,6 +303,10 @@
   overflow: hidden;
 }
 
+.text-container {
+  max-width: 680px;
+}
+
 .container::after {
   content: "";
   display: table;
@@ -316,7 +320,7 @@
 }
 
 @media screen and (max-width: 525px) {
-  .container {
+  .container:not(:first){
     padding: 56px 16px;
   }
 }
@@ -520,6 +524,7 @@
   margin-left: auto !important;
   margin-right: auto !important;
 }
+
 
 .mx-0 {
   margin-left: 0 !important;
@@ -1513,7 +1518,7 @@ a:hover {
 }
 
 input {
-  accent-color: #5390E3;
+  accent-color: #eee;
 }
 
 input,

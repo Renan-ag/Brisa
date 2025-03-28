@@ -1,9 +1,4 @@
 .post-image {
   overflow: hidden;
-  border-radius: 6px;
-  height: 540px;
-}
-
-.post-image img {
-  transform: translateY(-92px);
+  border-radius: 6px;  
 }
