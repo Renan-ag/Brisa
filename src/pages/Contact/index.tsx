@@ -3,12 +3,14 @@ const Contact = () => {
     <>
       <div className="container flex-grow-1">
         <h2 className="ml-16">Fale com a gente</h2>
-        <div className="row">
+        <div className="row mt-8">
           <div className="col-6 py-0">
-            <p className="text-justify">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse alias, rerum placeat tempora, voluptas modi assumenda voluptatem repellat molestiae minus dolor aspernatur! Temporibus placeat unde fugit, reprehenderit magni ratione itaque?
+            <p className="text-justify color-white">
+              Seja bem-vindo(a) ao Brisa, um espaço dedicado a compartilhar ideias, inspirações e reflexões sobre vida, viagens, cultura e tudo o que nos move. Queremos ouvir você! <br /> <br />
+              Se tiver dúvidas, sugestões ou apenas quiser bater um papo, não hesite em nos contatar. Sua opinião é importante para nós e ajuda a tornar o Brisa cada vez melhor. <br /> <br />
+              <i>O Brisa é mais que um blog, é uma comunidade. Juntos, criamos ventos de mudança. 🌿</i>
             </p>
-            <h5 className="color-gray mt-8">E-mail: Test@email.com</h5>
+            <h5 className="color-white fw-normal mt-16">E-mail: Test@email.com</h5>
           </div>
           <div className="col-6 py-0">
             <form className="">

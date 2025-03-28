@@ -20,6 +20,7 @@ const Header = () => {
 
   function handleSearch(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setShowMobileMenu(false);
     navigate(`/pesquisa?search=${form.search}`);
   }
 

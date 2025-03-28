@@ -9,8 +9,8 @@ const Footer = () => {
   return (
     <>
       <footer className="px-48 bt-black">
-        <div className="row">
-          <div className="col-8 mx-0 flex-column-sm flex-vertical-center">
+        <div className="flex-between flex-column-sm py-24 g-16">
+          <div className="mx-0 flex-column-sm flex-vertical-center">
             <span className="brand brand-font">
               <img src={Wind} alt="Vento icone" />
               Brisa
@@ -19,7 +19,7 @@ const Footer = () => {
               © Copyright 2025 Brisa Inc. - Creative and informative Blog
             </p>
           </div>
-          <div className="col-4 mr-0 flex-end flex-center-sm">
+          <div className="mr-0 flex-end flex-center-sm">
             <ul className="pt-8">
               <li>
                 <a className="color-gray" href="#">

@@ -38,36 +38,31 @@ const Post = () => {
 
   return (
     <>
-      <section className="container">
+      <section className="container text-container">
         {error && <h5 className='text-center pt-48 color-red'>Houve um erro ao carregar os dados da página, tente recarregar a página novamente! </h5>}
         <div>
-          <h5 className="color-gray fw-normal uppercase text-center">{postData?.category}</h5>
-          <h2 className="fw-normal mt-8 text-center">{postData?.title}</h2>
-          {authorData && <div className="flex-center mt-24">
-            <div className="flex-start">
-              <div className="profile">
-                <img src={authorData?.imageProfile} className="profile-img" alt="Imagem do autor" />
-              </div>
-              <div className="ml-16">
-                <h6 className="color-blue bold">{authorData?.name} {authorData?.surname}</h6>
-                <h6 className="color-gray">Autor</h6>
+          <h6 className="color-gray fw-normal uppercase">{postData?.category}</h6>
+          <h3 className="fw-normal">{postData?.title}</h3>
+          {authorData &&
+            <div className="mt-8">
+              <div className="flex-vertical-center">
+                <div>
+                  <h6 className="color-white">Escrito por {authorData?.name} {authorData?.surname}</h6>
+                  <h6 className="color-gray">{formatDateToPost(postData?.date ?? new Date())} - leitura de {postData?.duration}</h6>
+                </div>
               </div>
             </div>
-            <div className="ml-32">
-              <h6 className="color-gray"> {formatDateToPost(postData?.date ?? new Date())} - leitura de {postData?.duration}.</h6>
-            </div>
-          </div>}
+          }
         </div>
-        <div className="w-100 post-image my-32">
-          <img src={postData?.imageUrl} alt="Imagem da noticia" />
+        <div className="w-100 post-image my-24">
+          <img src={postData?.imageUrl} alt={`Imagem da noticia "${postData?.title}"`} />
         </div>
         <div>
-          {/* <h3 className="mb-8 fw-normal">Este aqui é o primeiro titulo</h3> */}
           <p>{postData?.content}</p>
         </div>
         <div className="row mt-40">
-          <div className="col-3 remove-in-sm"></div>
-          {authorData && <div className="col-6 border-black px-16 py-32">
+          <div className="col-1 remove-in-sm"></div>
+          {authorData && <div className="col-10 border-black px-16 py-32">
             <div className="flex-start">
               <div>
                 <div className="profile-big">
@@ -75,14 +70,14 @@ const Post = () => {
                 </div>
               </div>
 
-              <div className="ml-32">
-                <h6 className="fw-normal color-blue">{authorData?.name} {authorData?.surname}</h6>
-                <h6 className="color-gray">Autor</h6>
-                <p className="mt-16"> {authorData?.description} </p>
+              <div className="ml-32 flex-grow-1">
+                <h6 className="fw-normal text-center color-white">{authorData?.name} {authorData?.surname}</h6>
+                <h6 className="color-gray text-center">Autor</h6>
+                <p className="mt-16 text-center"> {authorData?.description} </p>
               </div>
             </div>
           </div>}
-          <div className="col-3 remove-in-sm"></div>
+          <div className="col-1 remove-in-sm"></div>
         </div>
       </section>
     </>

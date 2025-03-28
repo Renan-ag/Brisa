@@ -10,7 +10,7 @@ import IUser from 'types/user.type';
 // Utils
 import formatDateToPost from 'utils/formatDateToPost';
 
-const Main = ({ content }: { content: IPost }) => {
+const Main = ({ content, border }: { content: IPost, border: boolean }) => {
   const [authorData, setAuthorData] = useState<IUser>();
 
   useEffect(() => {
@@ -20,12 +20,12 @@ const Main = ({ content }: { content: IPost }) => {
       .then((res) => {
         setAuthorData(res.data as IUser);
       })
-      .catch((err) => { console.log(err); });
+      .catch((err) => { console.error(err); });
   }, []);
 
   return (
     <>
-      <div className="bb-black py-32">
+      <div className={`${border && 'bb-black'} py-32`}>
         <h6 className="color-gray uppercase">{formatDateToPost(content.date)}</h6>
         <h6 className="color-gray uppercase">{content.category}</h6>
 
@@ -36,13 +36,13 @@ const Main = ({ content }: { content: IPost }) => {
           {content.resume}
         </p>
 
-        <div className="flex-start mt-24">
+        <div className="mt-24 flex-vertical-center">
           <div className="profile">
             <img src={authorData?.imageProfile} className="profile-img" alt="Imagem de perfil do autor." />
           </div>
 
           <div className="ml-16">
-            <h6 className="color-blue bold">{authorData?.name} {authorData?.surname}</h6>
+            <h6 className="color-white">{authorData?.name} {authorData?.surname}</h6>
             <h6 className="color-gray">@{authorData?.user}</h6>
           </div>
         </div>

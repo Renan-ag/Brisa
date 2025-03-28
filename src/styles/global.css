@@ -303,6 +303,10 @@
   overflow: hidden;
 }
 
+.text-container {
+  max-width: 680px;
+}
+
 .container::after {
   content: "";
   display: table;
@@ -312,6 +316,12 @@
 @media screen and (max-width: 960px) {
   .container {
     padding: 96px 16px;
+  }
+}
+
+@media screen and (max-width: 525px) {
+  .container:not(:first){
+    padding: 56px 16px;
   }
 }
 
@@ -482,7 +492,7 @@
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  border: 2px solid #73ACFA;
+  border: 2px solid #8d8e91;
 }
 
 .s-0 {
@@ -509,6 +519,12 @@
 .ml-0 {
   margin-left: 0 !important;
 }
+
+.mx-auto {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
 
 .mx-0 {
   margin-left: 0 !important;
@@ -1303,6 +1319,7 @@ h6 {
 
 p {
   color: #adadad;
+  text-align: justify;
   font-family: "Rubik", sans-serif;
   font-size: 16px;
   line-height: 150%;
@@ -1333,6 +1350,10 @@ strong {
 
 .text-justify {
   text-align: justify;
+}
+
+.text-left {
+  text-align: left;
 }
 
 .text-center {
@@ -1383,12 +1404,29 @@ strong {
   border: 0;
   font-family: "Rubik", sans-serif;
   font-size: 16px;
+  letter-spacing: 1px;
   line-height: 150%;
   transition: 0.3s ease;
 }
 
+.btn-sm {
+  padding: 5px 12px;
+}
+
 .btn:hover {
   opacity: 0.7;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid #eeeeec;
+  color: #eeeeec;
+
+  &:hover {
+    background: #eeeeec;
+    color: #0F141F;
+    opacity: 1;
+  }
 }
 
 .btn-change-page {
@@ -1440,6 +1478,7 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    overflow: hidden;
   }
 
   width: 100%;
@@ -1479,7 +1518,7 @@ a:hover {
 }
 
 input {
-  accent-color: #5390E3;
+  accent-color: #eee;
 }
 
 input,
