@@ -10,9 +10,9 @@ const WindParticle = () => {
       const numParticles = 90;
       const newParticle = Array.from({ length: numParticles }).map((_, i) => ({
         id: i,
-        bottom: Math.random() * 900,
+        bottom: Math.random() * 700,
         size: Math.random() * 4 + 3,
-        duration: 12, // Animation duration 5s
+        duration: 13, // Animation duration 5s
         delay: Math.random() * 20,
       }));
 
@@ -29,8 +29,8 @@ const WindParticle = () => {
           key={particle.id}
           className="position-absolute"
           style={{
-            bottom: `${particle.bottom - 40}px`,
-            left: `-70px`,
+            bottom: `${particle.bottom - 110}px`,
+            left: `0px`,
             width: `${particle.size}px`,
             height: `${particle.size}px`,
             backgroundColor: "rgba(255,255,255, .2)",
