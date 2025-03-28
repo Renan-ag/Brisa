@@ -315,6 +315,12 @@
   }
 }
 
+@media screen and (max-width: 525px) {
+  .container {
+    padding: 56px 16px;
+  }
+}
+
 @media screen and (max-width: 960px) {
   .remove-in-sm {
     display: none;
@@ -508,6 +514,11 @@
 
 .ml-0 {
   margin-left: 0 !important;
+}
+
+.mx-auto {
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
 .mx-0 {
@@ -1303,6 +1314,7 @@ h6 {
 
 p {
   color: #adadad;
+  text-align: justify;
   font-family: "Rubik", sans-serif;
   font-size: 16px;
   line-height: 150%;
@@ -1333,6 +1345,10 @@ strong {
 
 .text-justify {
   text-align: justify;
+}
+
+.text-left {
+  text-align: left;
 }
 
 .text-center {
@@ -1457,6 +1473,7 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    overflow: hidden;
   }
 
   width: 100%;
