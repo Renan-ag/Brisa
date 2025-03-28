@@ -1,7 +1,14 @@
 .card {
+  display: flex;
+  flex-direction: column;
   background-color: #303030;
-  height: 520px;
+  max-width: 520px;
+  height: 520px;  
   border-radius: 24px;
+
+  .button-container {
+    padding-bottom: 32px;
+  }
 
   p {
     display: -webkit-box;    
@@ -25,4 +32,15 @@
 
 .thumb:hover img {
   transform: scale(1.1);
+}
+
+@media screen and (max-width: 960px) {
+  .card {
+    height: auto;
+    padding-bottom: 16px;
+
+    .button-container {
+      padding-block: 16px 12px;
+    }
+  }
 }
