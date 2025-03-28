@@ -10,11 +10,18 @@ import { Link } from 'react-router-dom';
 const Card = ({ content }: { content: IPost }) => {
   return (
     <>
-      <div className="col-4">
+      <article className="col-4">
         <div className='card p-0 mx-auto'>
           <div className="thumb hidden">
-            <Link to={`/post/${content.id}`}>
-              <img src={content.imageUrl} alt="Imagem de setup tematico do Raichu (Pokemon)" />
+            <Link
+              aria-label={`Leia mais sobre ${content.title}`}
+              to={`/post/${content.id}`}
+            >
+              <img
+                loading="lazy"
+                src={content.imageUrl}
+                alt={`Imagem ilustrando o tema "${content.title}"`}
+              />
             </Link>
           </div>
 
@@ -29,12 +36,18 @@ const Card = ({ content }: { content: IPost }) => {
                 <p className="mt-8">{content.resume}</p>
               </div>
               <div className="w-100 button-container">
-                <Link to={`/post/${content.id}`} className="btn btn-outline btn-sm w-100 text-center"> Ler mais </Link>
+                <Link
+                  aria-label={`Leia mais sobre ${content.title}`}
+                  to={`/post/${content.id}`}
+                  className="btn btn-outline btn-sm w-100 text-center"
+                >
+                  Ler mais
+                </Link>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </article>
     </>
   );
 }
