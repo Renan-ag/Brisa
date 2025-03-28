@@ -10,7 +10,7 @@ import IUser from 'types/user.type';
 // Utils
 import formatDateToPost from 'utils/formatDateToPost';
 
-const Main = ({ content }: { content: IPost }) => {
+const Main = ({ content, border }: { content: IPost, border: boolean }) => {
   const [authorData, setAuthorData] = useState<IUser>();
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const Main = ({ content }: { content: IPost }) => {
 
   return (
     <>
-      <div className="bb-black py-32">
+      <div className={`${border && 'bb-black'} py-32`}>
         <h6 className="color-gray uppercase">{formatDateToPost(content.date)}</h6>
         <h6 className="color-gray uppercase">{content.category}</h6>
 

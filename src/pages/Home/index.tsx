@@ -63,9 +63,9 @@ const Home = () => {
             </h2>
           </div>
           <div>
-            {
-              main.map((item) => (
-                <Main key={item.id} content={item} />
+            {              
+              main.map((item, index) => (
+                <Main key={item.id} border={(index) != (main.length - 1)} content={item} />
               ))
             }
           </div>
