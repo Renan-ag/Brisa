@@ -9,7 +9,7 @@ const Hero = () => {
             <div className="pl-72 remove-in-sm"></div>
             <div>
               <h1 className="brand-font fw-normal h0">Brisa</h1>
-              <p className=" mt-16">
+              <p className="text-left mt-16">
                 Brisa é onde as ideias sopram livremente. Com conteúdos diversos, de notícias a reflexões e análises, nosso
                 objetivo é trazer um ar novo de inspiração e conhecimento para sua rotina.
               </p>
