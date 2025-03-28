@@ -20,7 +20,7 @@ const Main = ({ content }: { content: IPost }) => {
       .then((res) => {
         setAuthorData(res.data as IUser);
       })
-      .catch((err) => { console.log(err); });
+      .catch((err) => { console.error(err); });
   }, []);
 
   return (
@@ -36,13 +36,13 @@ const Main = ({ content }: { content: IPost }) => {
           {content.resume}
         </p>
 
-        <div className="flex-start mt-24">
+        <div className="mt-24 flex-vertical-center">
           <div className="profile">
             <img src={authorData?.imageProfile} className="profile-img" alt="Imagem de perfil do autor." />
           </div>
 
           <div className="ml-16">
-            <h6 className="color-blue bold">{authorData?.name} {authorData?.surname}</h6>
+            <h6 className="color-white">{authorData?.name} {authorData?.surname}</h6>
             <h6 className="color-gray">@{authorData?.user}</h6>
           </div>
         </div>
