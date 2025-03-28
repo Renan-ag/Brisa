@@ -8,7 +8,7 @@ import './footer.css'
 const Footer = () => {
   return (
     <>
-      <footer className="px-48 bt-black">
+      <footer className="page-footer px-48 bt-black">
         <div className="flex-between flex-column-sm py-24 g-16">
           <div className="mx-0 flex-column-sm flex-vertical-center">
             <span className="brand brand-font">

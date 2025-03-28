@@ -1,4 +1,4 @@
-footer .brand {
+.page-footer .brand {
   color: #FFF;
   font-size: 32px;
   line-height: 100%;
@@ -7,12 +7,12 @@ footer .brand {
   gap: 8px;
 }
 
-footer .brand img {
+.page-footer .brand img {
   max-width: 40px;
   min-width: 32px;
 }
 
-footer ul {
+.page-footer ul {
   list-style: none;
   display: flex;
 }
