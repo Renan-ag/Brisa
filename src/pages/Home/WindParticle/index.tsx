@@ -1,49 +1,47 @@
-import { useEffect, useState } from "react";
+import {useMemo } from "react";
 
-interface IParticle { id: number; bottom: number; size: number; duration: number; delay: number; }
+const PARTICLE_COUNT = 90;
+const ANIMATION_DURATION = 13;
+const MAX_DELAY = 20;
+const MAX_SIZE = 7; // 3-7 range
+const MIN_SIZE = 3;
+const MAX_HEIGHT = 700;
+const HEIGHT_OFFSET = 80;
 
 const WindParticle = () => {
-  const [particles, SetParticles] = useState<Array<IParticle>>([]);
-
-  useEffect(() => {
-    const generateParticle = () => {
-      const numParticles = 90;
-      const newParticle = Array.from({ length: numParticles }).map((_, i) => ({
-        id: i,
-        bottom: Math.random() * 700,
-        size: Math.random() * 4 + 3,
-        duration: 13, // Animation duration 5s
-        delay: Math.random() * 20,
-      }));
-
-      SetParticles(newParticle);
-    }
-
-    generateParticle();
+  const particles = useMemo(() => {
+    return Array.from({ length: PARTICLE_COUNT }, (_, i) => ({
+      id: i,
+      bottom: Math.random() * MAX_HEIGHT,
+      size: Math.random() * (MAX_SIZE - MIN_SIZE) + MIN_SIZE,
+      duration: ANIMATION_DURATION,
+      delay: Math.random() * MAX_DELAY      
+    }));
   }, []);
 
   return (
-    <div>
+    <>
       {particles.map((particle) => (
         <div
           key={particle.id}
           className="position-absolute"
           style={{
-            bottom: `${particle.bottom - 110}px`,
-            left: `0px`,
+            bottom: `${particle.bottom - HEIGHT_OFFSET}px`,
+            left: `0`,
             width: `${particle.size}px`,
             height: `${particle.size}px`,
-            backgroundColor: "rgba(255,255,255, .2)",
+            backgroundColor: "rgba(255, 255, 255, 0.2)",
             borderRadius: "50%",
             opacity: 0,
             boxShadow: "0 0 5px #A6A6A6, 0 0 10px #A6A6A6",
             filter: "blur(1px)",
-            animation: `windParticle ${particle.duration}s linear ${particle.delay + (particle.id * .04)}s infinite`,
+            animation: `windParticle ${particle.duration}s linear ${particle.delay + (particle.id * 0.04)}s infinite`,
+            willChange: "transform, opacity", // Optimize for animations
           }}
         />
       ))}
-    </div>
+    </>
   );
-}
+};
 
 export default WindParticle;

@@ -12,35 +12,32 @@ import './home.css';
 import IPost from "types/post.type";
 import { useNavigate } from 'react-router-dom';
 
+const POST_LIMIT = 3;
+const LETTER_SPACING = ['N', 'O', 'V', 'I', 'D', 'A', 'D', 'E', 'S'];
 
 const Home = () => {
   const navigate = useNavigate();
-  const [main, setMain] = useState<Array<IPost>>([]);
-  const [mostViewed, setMostViewed] = useState<Array<IPost>>([]);
+  const [mainPosts, setMainPosts] = useState<IPost[]>([]);
+  const [popularPosts, setPopularPosts] = useState<IPost[]>([]);
 
   useEffect(() => {
-    // Get Top 3 most viewed posts
-    api.get('posts?_limit=3&_sort=-views')
-      .then((res) => {
-        const data = res.data as Array<IPost>;
-        setMostViewed(data);
-      })
-      .catch((err) => {
-        console.error(err);
-        navigate('/erro-servidor');
-      });
+    const fetchPosts = async () => {
+      try {
+        const [popularRes, recentRes] = await Promise.all([
+          api.get(`posts?_limit=${POST_LIMIT}&_sort=-views`),
+          api.get(`posts?_limit=${POST_LIMIT}&_sort=-date`)
+        ]);
 
-    // Get Top 3 most recent posts
-    api.get('posts?_limit=3&_sort=-date')
-      .then((res) => {
-        const data = res.data as Array<IPost>;
-        setMain(data);
-      })
-      .catch((err) => {
-        console.error(err);
+        setPopularPosts(popularRes.data as IPost[]);
+        setMainPosts(recentRes.data as IPost[]);
+      } catch (err) {
+        console.error('Failed to fetch posts:', err);
         navigate('/erro-servidor');
-      });
-  }, [])
+      }
+    };
+
+    fetchPosts();
+  }, [navigate]);
 
   return (
     <>
@@ -51,23 +48,21 @@ const Home = () => {
         <div className="news-section g-40">
           <div className="px-64">
             <h2 className="flex-start flex-column g-32 pt-64">
-              <span>N</span>
-              <span>O</span>
-              <span>V</span>
-              <span className="pl-8">I</span>
-              <span>D</span>
-              <span>A</span>
-              <span>D</span>
-              <span>E</span>
-              <span>S</span>
+              {LETTER_SPACING.map((letter, index) => (
+                <span key={index} className={index === 3 ? 'pl-8' : ''}>
+                  {letter}
+                </span>
+              ))}
             </h2>
           </div>
           <div>
-            {              
-              main.map((item, index) => (
-                <Main key={item.id} border={(index) != (main.length - 1)} content={item} />
-              ))
-            }
+            {mainPosts.map((post, index) => (
+              <Main
+                key={post.id}
+                border={index !== mainPosts.length - 1}
+                content={post}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -76,17 +71,19 @@ const Home = () => {
         <div className="w-100 px-16">
           <h3 className="fw-normal">Posts mais acessados!</h3>
           <p className="mt-8">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem facilis et atque soluta deserunt assumenda hic
-            fuga.
+            Confira os artigos mais populares entre nossos leitores. Destaques que
+            conquistaram a atenção da comunidade.
           </p>
         </div>
 
         <div className="row mt-16">
-          {mostViewed.map((item) => (<Card key={item.id} content={item} />))}
+          {popularPosts.map(post => (
+            <Card key={post.id} content={post} />
+          ))}
         </div>
       </section>
     </>
-  )
-}
+  );
+};
 
 export default Home;

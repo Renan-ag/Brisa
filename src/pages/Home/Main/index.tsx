@@ -11,44 +11,64 @@ import IUser from 'types/user.type';
 import formatDateToPost from 'utils/formatDateToPost';
 
 const Main = ({ content, border }: { content: IPost, border: boolean }) => {
-  const [authorData, setAuthorData] = useState<IUser>();
+  const [authorData, setAuthorData] = useState<IUser | null>(null);
 
   useEffect(() => {
-    if (!content) return;
+    if (!content?.id_user) return;
 
-    api.get(`users/${content.id_user}`)
-      .then((res) => {
-        setAuthorData(res.data as IUser);
-      })
-      .catch((err) => { console.error(err); });
-  }, []);
+    const fetchAuthorData = async () => {
+      try {
+        const response = await api.get<IUser>(`users/${content.id_user}`);
+        setAuthorData(response.data);
+      } catch (err) {
+        console.error('Failed to fetch author data:', err);
+      }
+    };
+
+    fetchAuthorData();
+  }, [content?.id_user]);
 
   return (
     <>
-      <div className={`${border && 'bb-black'} py-32`}>
-        <h6 className="color-gray uppercase">{formatDateToPost(content.date)}</h6>
-        <h6 className="color-gray uppercase">{content.category}</h6>
+      <article className={`post-card ${border ? 'bb-black' : ''} py-32`}>
+        <div className="post-meta">
+          <span className="color-gray uppercase h6">{formatDateToPost(content.date)}</span>
+          <br />
+          <span className="color-gray uppercase h6">{content.category}</span>
+        </div>
 
-        <Link to={`/post/${content.id}`}>
+        <Link
+          to={`/post/${content.id}`}
+          className="post-title-link"
+          aria-label={`Leia mais sobre ${content.title}`}
+        >
           <h3 className="fw-normal mt-8">{content.title}</h3>
         </Link>
-        <p className="mt-8">
+
+        <p className="post-excerpt mt-8">
           {content.resume}
         </p>
 
-        <div className="mt-24 flex-vertical-center">
+        <div className="author-info mt-24 flex-vertical-center">
           <div className="profile">
-            <img src={authorData?.imageProfile} className="profile-img" alt="Imagem de perfil do autor." />
+            <img
+              src={authorData?.imageProfile}
+              className="profile-img"
+              alt={`Perfil de ${authorData?.name}`}
+              loading="lazy"
+            />
           </div>
 
-          <div className="ml-16">
-            <h6 className="color-white">{authorData?.name} {authorData?.surname}</h6>
+          <div className="author-details ml-16">
+            <h6 className="color-white">
+              {authorData?.name} {authorData?.surname}
+            </h6>
             <h6 className="color-gray">@{authorData?.user}</h6>
           </div>
         </div>
-      </div>
+      </article>
     </>
-  )
+  );
 }
 
 export default Main;

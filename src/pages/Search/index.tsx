@@ -7,17 +7,16 @@ import Card from 'pages/Home/Card';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router';
 import api from 'services/api';
-
 // Types
 import IPost from 'types/post.type';
-import { AxiosHeaders } from 'axios';
+import useDebounce from 'utils/useDebounce';
 
 const Search = () => {
   const LIMIT = 6;
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
+  const [error, setError] = useState(false);
 
-  // Estado para controlar busca e paginação
   const [form, setForm] = useState({ search: searchParams.get('search') || '' });
   const [pagination, setPagination] = useState({
     currentPage: 1,
@@ -26,52 +25,77 @@ const Search = () => {
     data: [] as IPost[],
   });
 
-  // Busca dados na API sempre que `search` ou `currentPage` mudar
+  const debouncedSearchTerm = useDebounce(form.search, 500);
+
   useEffect(() => {
-    const searchQuery = searchParams.get('search');
-    if (!searchQuery) return;
+    const fetchPosts = async () => {
+      if (!debouncedSearchTerm) {
+        setPagination(prev => ({ ...prev, data: [], totalItems: 0 }));
+        return;
+      }
 
-    api.get(`/posts?_page=${pagination.currentPage}&_limit=${LIMIT}&q=${searchQuery}`)
-      .then((res) => {
-        const headers = res.headers;
-        const totalItems = headers instanceof AxiosHeaders ? Number(headers.get('X-Total-Count')) : 0;
-        setPagination((prev) => ({
-          ...prev,
-          totalItems,
+      setError(false);
+
+      try {
+        const response = await api.get(`/posts`, {
+          params: {
+            _page: pagination.currentPage,
+            _limit: LIMIT,
+            q: debouncedSearchTerm,
+          }
+        });
+
+        const totalItems = Number(response.headers['x-total-count']) || 0;
+
+        setPagination({
+          currentPage: pagination.currentPage,
           totalPages: Math.ceil(totalItems / LIMIT),
-          data: res.data,
-        }));
-      })
-      .catch(() => {
-        navigate('/erro-servidor');
-      });
-  }, [searchParams, pagination.currentPage]);
+          totalItems,
+          data: response.data,
+        });
 
-  // Atualiza campo de busca
+        setSearchParams({
+          search: debouncedSearchTerm,
+          page: String(pagination.currentPage)
+        });
+
+      } catch (err) {
+        console.error('Search failed:', err);
+        setError(true);
+      }
+    };
+
+    fetchPosts();
+  }, [debouncedSearchTerm, pagination.currentPage]);
+
   function onChange(e: ChangeEvent<HTMLInputElement>) {
     setForm({ search: e.target.value });
+    setPagination(prev => ({ ...prev, currentPage: 1 }));
   }
 
-  // Realiza nova busca ao submeter o formulário
   function handleSearch(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setSearchParams({ search: form.search });
   }
 
-  // Troca de página
   function changePage(direction: 'next' | 'prev') {
     setPagination((prev) => ({
       ...prev,
-      currentPage: direction === 'next' ? prev.currentPage + 1 : prev.currentPage - 1,
+      currentPage: direction === 'next' ? pagination.currentPage + 1 : pagination.currentPage - 1,
     }));
+  }
+
+  if (error) {
+    navigate('/erro-servidor');
   }
 
   return (
     <section className="container flex-grow-1 flex-column position-relative w-100">
-      <h6 className='color-gray text-center'>{pagination.totalItems} resultados</h6>
-      <h3 className="fw-normal text-center">"{searchParams.get('search')}"</h3>
+      <header>
+        <p className='color-gray text-center h6'>{pagination.totalItems} {pagination.totalItems === 1 ? 'resultado' : 'resultados'}</p>
+        <h2 className="fw-normal text-center h3">"{searchParams.get('search')}"</h2>
+      </header>
 
-      {/* Formulário de busca */}
       <form onSubmit={handleSearch}>
         <div className='row'>
           <div className='col-2 remove-in-small'></div>
@@ -80,32 +104,32 @@ const Search = () => {
               type="text"
               name="search"
               placeholder="Buscar..."
+              aria-label='Buscar posts'
               value={form.search}
               onChange={onChange}
             />
-            <button className='btn ml-16'>Buscar</button>
+            <button type='submit' className='btn ml-16'>Buscar</button>
           </div>
           <div className='col-2 remove-in-small'></div>
         </div>
       </form>
 
-      {/* Lista de resultados */}
       <div className="row">
         {pagination.data.length === 0 ? (
-          <h5 className='text-center color-gray'>Nenhum registro encontrado</h5>
+          <h5 className='text-center color-gray'>Nenhum registro encontrado!</h5>
         ) : (
           pagination.data.map((item) => <Card key={item.id} content={item} />)
         )}
       </div>
 
-      {/* Controles de Paginação */}
       <div className='flex-between mt-40 mx-auto text-container'>
         <button
           className='btn-change-page btn-prev'
           disabled={pagination.currentPage === 1}
           onClick={() => changePage('prev')}
+          aria-label='Página anterior'
         >
-          <img src={ChevronLeft} alt="Seta apontando para esquerda" />
+          <img src={ChevronLeft} aria-hidden="true" alt="" />
           Anterior
         </button>
 
@@ -115,9 +139,10 @@ const Search = () => {
           className='btn-change-page btn-next'
           disabled={pagination.currentPage >= pagination.totalPages}
           onClick={() => changePage('next')}
+          aria-label='Próxima página'
         >
           Próximo
-          <img src={ChevronRight} alt="Seta apontando para direita" />
+          <img src={ChevronRight} aria-hidden="true"  alt="" />
         </button>
       </div>
     </section>
