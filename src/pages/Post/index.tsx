@@ -1,3 +1,5 @@
+// Components
+import ReactMarkdown from 'react-markdown';
 // Styles
 import './Post.css'
 // Hooks
@@ -29,7 +31,7 @@ const Post = () => {
       try {
         const postResponse = await api.get<IPost>(`/posts/${idPost}`);
         if (!isMounted) return;
-
+        if (!postResponse.data) navigate('/post-nao-encontrado');
         setPostData(postResponse.data);
 
         try {
@@ -53,9 +55,6 @@ const Post = () => {
     return <h5 className='text-center pt-48 color-red'>Houve um erro ao carregar os dados da página, tente recarregar a página novamente! </h5>;
   }
 
-  if (!postData) {
-    navigate('/post-nao-encontrado');
-  }
 
   return (
     <article className="container text-container">
@@ -78,10 +77,8 @@ const Post = () => {
         />
       </figure>
 
-      <div>
-        {postData?.content?.split('\n').map((paragraph, i) => (
-          <p key={i}>{paragraph}</p>
-        ))}
+      <div className='post-content'>
+        <ReactMarkdown>{postData?.content}</ReactMarkdown>
       </div>
 
       <footer className="row mt-40">
