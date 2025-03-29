@@ -1,7 +1,6 @@
 // Svg
 import ChevronLeft from 'svg/chevron-left.svg';
 import ChevronRight from 'svg/chevron-right.svg';
-
 // Components | Hooks
 import Card from 'pages/Home/Card';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
@@ -29,11 +28,6 @@ const Search = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      if (!debouncedSearchTerm) {
-        setPagination(prev => ({ ...prev, data: [], totalItems: 0 }));
-        return;
-      }
-
       setError(false);
 
       try {
@@ -41,7 +35,7 @@ const Search = () => {
           params: {
             _page: pagination.currentPage,
             _limit: LIMIT,
-            q: debouncedSearchTerm,
+            q: debouncedSearchTerm
           }
         });
 
@@ -55,8 +49,7 @@ const Search = () => {
         });
 
         setSearchParams({
-          search: debouncedSearchTerm,
-          page: String(pagination.currentPage)
+          search: debouncedSearchTerm
         });
 
       } catch (err) {
@@ -92,8 +85,12 @@ const Search = () => {
   return (
     <section className="container flex-grow-1 flex-column position-relative w-100">
       <header>
-        <p className='color-gray text-center h6'>{pagination.totalItems} {pagination.totalItems === 1 ? 'resultado' : 'resultados'}</p>
-        <h2 className="fw-normal text-center h3">"{searchParams.get('search')}"</h2>
+        {searchParams.get('search') &&
+          <>
+            <p className='color-gray text-center h6'>{pagination.totalItems} {pagination.totalItems === 1 ? 'resultado' : 'resultados'}</p>
+            <h2 className="fw-normal text-center h3">"{searchParams.get('search')}"</h2>
+          </>
+        }
       </header>
 
       <form onSubmit={handleSearch}>
@@ -108,7 +105,6 @@ const Search = () => {
               value={form.search}
               onChange={onChange}
             />
-            <button type='submit' className='btn ml-16'>Buscar</button>
           </div>
           <div className='col-2 remove-in-small'></div>
         </div>
@@ -142,7 +138,7 @@ const Search = () => {
           aria-label='Próxima página'
         >
           Próximo
-          <img src={ChevronRight} aria-hidden="true"  alt="" />
+          <img src={ChevronRight} aria-hidden="true" alt="" />
         </button>
       </div>
     </section>
