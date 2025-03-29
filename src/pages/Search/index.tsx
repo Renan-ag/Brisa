@@ -59,7 +59,7 @@ const Search = () => {
     };
 
     fetchPosts();
-  }, [debouncedSearchTerm, pagination.currentPage]);
+  }, [debouncedSearchTerm, pagination.currentPage, setSearchParams]);
 
   function onChange(e: ChangeEvent<HTMLInputElement>) {
     setForm({ search: e.target.value });

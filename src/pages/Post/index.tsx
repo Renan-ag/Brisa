@@ -49,7 +49,7 @@ const Post = () => {
     fetchData();
 
     return () => { isMounted = false; };
-  }, [idPost]);
+  }, [idPost, navigate]);
 
   if (error) {
     return <h5 className='text-center pt-48 color-red'>Houve um erro ao carregar os dados da página, tente recarregar a página novamente! </h5>;
