@@ -2,3 +2,8 @@
   overflow: hidden;
   border-radius: 6px;  
 }
+
+.post-content p {
+  color: white;
+  margin-bottom: 24px;
+}

@@ -6,6 +6,11 @@
   box-sizing: border-box;
 }
 
+li::marker {
+  font-family: 'Rubik', sans-serif;
+  color: #FFF;
+}
+
 .color-gradient {
   background-clip: text;
   -webkit-background-clip: text;
