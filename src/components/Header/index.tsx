@@ -35,6 +35,7 @@ const Header = () => {
             Brisa
           </Link>
           <ul>
+            <li><Link to="/pesquisa">Explorar</Link></li>
             <li><Link to="/sobre">Sobre</Link></li>
             <li><Link to="/contato">Contato</Link></li>
           </ul>
