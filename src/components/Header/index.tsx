@@ -4,24 +4,21 @@ import wind from 'svg/wind.svg'
 import './header.css';
 // Components / Hooks  / Types
 import { Link, useNavigate } from 'react-router-dom';
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { FormEvent, useState } from 'react';
 
 const Header = () => {
-  const initialValueForm = { search: '' };
   const navigate = useNavigate();
-
-  const [form, setForm] = useState(initialValueForm);
+  const [searchValue, setSearchValue] = useState<string>();
   const [showMobileMenu, setShowMobileMenu] = useState(false);
 
-  function onChange(e: ChangeEvent<HTMLInputElement>) {
-    const { value, name } = e.target;
-    setForm({ ...form, [name]: value });
+  const handleInputChange= (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value);
   }
 
   function handleSearch(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setShowMobileMenu(false);
-    navigate(`/pesquisa?search=${form.search}`);
+    navigate(`/pesquisa?search=${searchValue}`);
   }
 
   const toggleMobileMenu = () => setShowMobileMenu(!showMobileMenu);
@@ -46,8 +43,8 @@ const Header = () => {
         <div className="flex-start">
           <div className="search">
             <form onSubmit={handleSearch} className="flex-center">
-              <input type="text" name="search" onChange={onChange} placeholder="Buscar..." />
-              <button type='button' title='Pesquisar' className="btn-search"></button>
+              <input type="text" name="search" onChange={handleInputChange} value={searchValue} placeholder="Buscar..." />
+              <button type='submit' title='Pesquisar' className="btn-search"></button>
             </form>
           </div>
 
@@ -66,8 +63,8 @@ const Header = () => {
           <li><Link className="link-menu-mobile" to="/contato">Contato</Link></li>
           <li className="p-16">
             <form onSubmit={handleSearch} className="flex-center">
-              <input type="text" name="search" onChange={onChange} placeholder="Buscar..." />
-              <button type='button' title='Pesquisar' className="btn-search"></button>
+              <input type="text" name="search" onChange={handleInputChange} value={searchValue} placeholder="Buscar..." />
+              <button type='submit' title='Pesquisar' className="btn-search"></button>
             </form>
           </li>
         </ul>
