@@ -5,5 +5,16 @@
 
 .post-content p {
   color: white;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
+}
+
+.post-content li{
+  color: #fff;  
+  padding-bottom: 8px;
+}
+
+.post-content ul,
+.post-content ol {
+  padding-left: 24px;
+  margin-bottom: 16px;
 }

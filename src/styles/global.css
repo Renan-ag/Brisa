@@ -1487,6 +1487,8 @@ body {
   width: 100%;
   position: relative;
   background-color: #1E1E1E;
+  font-family: "Rubik",
+  sans-serif;
 }
 
 body::-webkit-scrollbar {
