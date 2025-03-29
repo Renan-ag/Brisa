@@ -47,7 +47,7 @@ const Header = () => {
           <div className="search">
             <form onSubmit={handleSearch} className="flex-center">
               <input type="text" name="search" onChange={onChange} placeholder="Buscar..." />
-              <button title='Pesquisar' className="btn-search"></button>
+              <button type='button' title='Pesquisar' className="btn-search"></button>
             </form>
           </div>
 
@@ -67,7 +67,7 @@ const Header = () => {
           <li className="p-16">
             <form onSubmit={handleSearch} className="flex-center">
               <input type="text" name="search" onChange={onChange} placeholder="Buscar..." />
-              <button title='Pesquisar' className="btn-search"></button>
+              <button type='button' title='Pesquisar' className="btn-search"></button>
             </form>
           </li>
         </ul>
