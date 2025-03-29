@@ -1,7 +1,7 @@
 import {useMemo } from "react";
 
-const PARTICLE_COUNT = 90;
-const ANIMATION_DURATION = 13;
+const PARTICLE_COUNT = 50;
+const ANIMATION_DURATION = 14;
 const MAX_DELAY = 20;
 const MAX_SIZE = 7; // 3-7 range
 const MIN_SIZE = 3;
