@@ -1,5 +1,5 @@
 import Wind from 'svg/wind.svg';
-import './Login.css'
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   return (
@@ -21,7 +21,7 @@ const Login = () => {
           <form>
             <input type="text" name="user" className="mt-24" placeholder="Digite seu usuário" />
             <input type="password" name="password" className="mt-16" placeholder="Digite sua senha" />
-            <button className="btn w-100 mt-32"> Entrar </button>
+            <Link to="/perfil" className="btn w-100 mt-32"> Entrar </Link>
           </form>
         </div>
         <div className="col-2 remove-in-sm"></div>
