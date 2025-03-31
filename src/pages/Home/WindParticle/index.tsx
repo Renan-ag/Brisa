@@ -37,6 +37,7 @@ const WindParticle = () => {
             filter: "blur(1px)",
             animation: `windParticle ${particle.duration}s linear ${particle.delay + (particle.id * 0.04)}s infinite`,
             willChange: "transform, opacity", // Optimize for animations
+            zIndex: -1,
           }}
         />
       ))}
