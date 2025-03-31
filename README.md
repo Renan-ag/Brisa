@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/d6e1af0e-4d5e-4813-988c-e18896573035)# Brisa 🍃
+# Brisa 🍃
 ## Description 📚
 Brisa is a dynamic, modern blog covering diverse topics, built as a front-end application using React, Vite, TypeScript, and SASS. To simulate a real backend, the project integrates a custom fake API powered by json-server, enabling full CRUD operations and a near-production environment experience.
 
