@@ -1,54 +1,48 @@
-# React + TypeScript + Vite
+![image](https://github.com/user-attachments/assets/d6e1af0e-4d5e-4813-988c-e18896573035)# Brisa 🍃
+## Description 📚
+Brisa is a dynamic, modern blog covering diverse topics, built as a front-end application using React, Vite, TypeScript, and SASS. To simulate a real backend, the project integrates a custom fake API powered by json-server, enabling full CRUD operations and a near-production environment experience.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ 
+### Application images 📸
+<img src="https://github.com/user-attachments/assets/9bc33ef3-9f28-46a5-be14-f70b4faf5162" width="400">
+<img src="https://github.com/user-attachments/assets/f5439d8f-5ab1-4e05-87d5-3973fb12880d" width="100">
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Installation 💡 
+ 1. Clone this repository or fork.
+ 
+ 2.  Install dependencies.
+```bash
+ npm i 
+```
+3. Set up JSON Server.
+```bash
+ npm i -g json-server@0.17.4 
+```
+4. Edit the ".env" file content.
+```bash
+ VITE_API_URL=localhost:3000 #put this line
+```
+5. Start the backend server with json-server
+```bash
+  json-server --watch db.json
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+6. Start the frontend application
+```bash
+  npm run dev
 ```
+
+7.  Access the Application 🌐
+```bash
+  Frontend: http://localhost:5173 (Vite default)
+  Backend API: http://localhost:3000
+```
+
+## Frontend Development 🌞 
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
+
+## Tools 🎨 
+ ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
