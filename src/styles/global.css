@@ -312,7 +312,7 @@ li::marker {
 
 @media screen and (max-width: 960px) {
   .container {
-    padding: 96px 16px;
+    padding: 72px 16px;
   }
 }
 
@@ -1553,6 +1553,12 @@ option {
 
 .small-content-container {
   padding-block: 248px 256px;
+}
+
+@media screen and (max-width: 525px) {
+  .small-content-container{
+    padding-block: 200px;
+  }
 }
 
 .flex-grow-1 {

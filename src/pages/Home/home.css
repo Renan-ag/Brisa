@@ -3,6 +3,12 @@
   overflow: visible !important;
 }
 
+@media screen and (max-width: 525px) {
+  .hero {
+    padding-top: 184px !important;    
+  } 
+}
+
 .news-section {
   display: flex;
   align-items: center;
