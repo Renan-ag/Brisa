@@ -21,7 +21,7 @@ const Login = () => {
           <form>
             <input type="text" name="user" className="mt-24" placeholder="Digite seu usuário" />
             <input type="password" name="password" className="mt-16" placeholder="Digite sua senha" />
-            <Link to="/perfil" className="btn w-100 mt-32"> Entrar </Link>
+            <Link to="/perfil" className="btn text-center w-100 mt-32"> Entrar </Link>
           </form>
         </div>
         <div className="col-2 remove-in-sm"></div>
