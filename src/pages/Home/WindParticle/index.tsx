@@ -30,10 +30,10 @@ const WindParticle = () => {
             left: `0`,
             width: `${particle.size}px`,
             height: `${particle.size}px`,
-            backgroundColor: "rgba(255, 255, 255, 0.2)",
+            backgroundColor: "#646464",
             borderRadius: "50%",
             opacity: 0,
-            boxShadow: "0 0 5px #A6A6A6, 0 0 10px #A6A6A6",
+            boxShadow: "0 0 5px #646464, 0 0 10px #646464",
             filter: "blur(1px)",
             animation: `windParticle ${particle.duration}s linear ${particle.delay + (particle.id * 0.04)}s infinite`,
             willChange: "transform, opacity", // Optimize for animations
