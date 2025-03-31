@@ -19,9 +19,11 @@ const Home = () => {
   const navigate = useNavigate();
   const [mainPosts, setMainPosts] = useState<IPost[]>([]);
   const [popularPosts, setPopularPosts] = useState<IPost[]>([]);
-  const hasLoaded = sessionStorage.getItem("hasLoaded");
+  const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
+    setHasLoaded(sessionStorage.getItem("hasLoaded") == 'true');    
+
     const fetchPosts = async () => {
       try {
         const [popularRes, recentRes] = await Promise.all([
