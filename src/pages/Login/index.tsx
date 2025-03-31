@@ -17,6 +17,7 @@ const Login = () => {
           </div>
 
           <h5 className="text-center fw-normal mt-16"> Olá, faça o login para continuar.</h5>
+          <h6 className='text-center color-gray mt-8'>Quer uma conta ? Entre em contato conosco!</h6>
 
           <form>
             <input type="text" name="user" className="mt-24" placeholder="Digite seu usuário" />
