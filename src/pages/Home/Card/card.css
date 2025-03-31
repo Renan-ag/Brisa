@@ -22,16 +22,18 @@
 }
 
 .card .thumb {
+  height: 230px;
   border-radius: 24px 24px 0 0;
 }
 
 .thumb img {
-  transform: scale(1.05);
+  width: 100%;    
+  transform: scale(1);
   transition: 0.35s ease;
 }
 
 .thumb:hover img {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 @media screen and (max-width: 960px) {
