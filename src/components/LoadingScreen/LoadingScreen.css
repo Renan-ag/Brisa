@@ -17,26 +17,26 @@
   svg {
     width: 160px;
     height: 160px;
-    stroke-dasharray: 90;
+    stroke-dasharray: 120;
     stroke-dashoffset: -48;
     animation: draw 1.5s 3 ease alternate forwards;
     animation-delay: .25s;
   }
 
-  animation: removeLoadingScreen 2s ease forwards;
-  animation-delay: 4.5s;
+  animation: removeLoadingScreen 1.55s ease forwards;
+  animation-delay: 4.2s;
 }
 
 @keyframes draw {
   0% {
-    stroke-dashoffset: -48;
+    stroke-dashoffset: 55; /* Valor positivo */
+    stroke-dasharray: 55; /* Definir explicitamente */
   }
-
   100% {
-    stroke-dashoffset: 0;
+    stroke-dashoffset: 110; /* Valor positivo */
+    stroke-dasharray: 55; /* Manter consistente */
   }
 }
-
 
 @keyframes removeLoadingScreen {
   0% {    
