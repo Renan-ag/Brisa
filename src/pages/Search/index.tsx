@@ -83,7 +83,7 @@ const Search = () => {
   }
 
   return (
-    <section className="container flex-grow-1 flex-column position-relative w-100">
+    <section className="container mt-32 flex-grow-1 flex-column position-relative w-100">
       <header>
         {searchParams.get('search') &&
           <>
